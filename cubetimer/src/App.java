@@ -1,9 +1,12 @@
 //the imports
+import java.io.IOException;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -54,9 +58,15 @@ public class App extends Application {
             }
     }
 
+    void getScramble(){
+        //JSONObject json = JSONObject(IOUtils.to)
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         text = new Text("0.00");
+        Text scrambleText = new Text();
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -81,6 +91,16 @@ public class App extends Application {
 
         //decode button
         Button toggleButton = new Button("Start");
+
+        //loading scramble and setting text
+        scrambleJson initialScramble = new scrambleJson();
+            try {
+				String initialScramble1 = initialScramble.getScramble();
+                scrambleText.setText(initialScramble1);
+            } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         toggleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -99,10 +119,26 @@ public class App extends Application {
             		timeline.pause();
             		sos = true;
             		toggleButton.setText("Start");
+                    //loading new scramble
+                    scrambleJson scramble = new scrambleJson();
+                    try {
+                        String scramble1 = scramble.getScramble();
+                        scrambleText.setText(scramble1);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                     //action for +2 btn
                     //enabling btns
                     plus2Button.setDisable(false);
                     dnfButton.setDisable(false);
+                    //action for dnf button
+                    dnfButton.setOnAction(event0 ->{
+                        //setting text to dnf
+                        text.setText("dnf");
+                        dnfButton.setDisable(true);
+                    });
+                    //action for +2btn
                     plus2Button.setOnAction(event1 -> {
                         //checking if the time is over one minute
                         if(text.getText().length() >= 8){
@@ -247,7 +283,8 @@ public class App extends Application {
         //adding children to hroot
         hroot.getChildren().addAll(toggleButton, plus2Button, dnfButton);
         //adding children to root
-        root.getChildren().addAll(text, hroot);
+        root.setMargin(scrambleText, new Insets(15,10,5,10));
+        root.getChildren().addAll(scrambleText, text, hroot);
 
         Scene scene = new Scene(root, 400, 300);
         primaryStage.setScene(scene);
