@@ -1,5 +1,17 @@
+DROP DATABASE IF EXISTS LucasTimer;
+CREATE DATABASE LucasTimer;
+USE LucasTimer;
+
+DROP TABLE IF EXISTS users;
 CREATE TABLE users(
+    id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS solves;
+CREATE TABLE solves(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255),
-    password VARCHAR(255)
+    time FLOAT(24, 2),
+    user_id INT(10) UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
