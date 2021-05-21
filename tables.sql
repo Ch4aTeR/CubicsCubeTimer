@@ -1,0 +1,5 @@
+CREATE TABLE users(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);
