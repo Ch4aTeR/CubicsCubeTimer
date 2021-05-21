@@ -135,15 +135,31 @@ public class App extends Application {
                             }
                             if(stopSeconds >= 10){
                                 if(stopMinutes >= 10){
-                                    text.setText(stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    if(stopHunderths >= 10){
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }else{
-                                    text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }
                             }else{
                                 if(stopMinutes >= 10){
-                                    text.setText(stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }else{
-                                    text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }
                             }
                         }else if(text.getText().length() >= 8){
@@ -151,15 +167,31 @@ public class App extends Application {
                             stopSeconds += 2;
                             if(stopSeconds >= 10){
                                 if(stopMinutes >= 10){
-                                    text.setText(stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    if(stopHunderths >= 10){
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText(stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }                                   
                                 }else{
-                                    text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText("0"+stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }
                             }else{
                                 if(stopMinutes >= 10){
-                                    text.setText(stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText(stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText(stopMinutes+":"+"0"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }else{
-                                    text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);
+                                    if(stopHunderths >= 10){
+                                        text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);                                    
+                                    }else{
+                                        text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                    }
                                 }
                             }
                         }else if(stopSeconds >= 58){
@@ -176,18 +208,33 @@ public class App extends Application {
                                 
                             }
                             if(stopSeconds >= 10){
-                                text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);                                
+                                if(stopHunderths >= 10){
+                                    text.setText("0"+stopMinutes+":"+stopSeconds+"."+stopHunderths);                                    
+                                }else{
+                                    text.setText("0"+stopMinutes+":"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                }
                             }else{
-                            text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);
+                                if(stopHunderths >= 10){
+                                    text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+stopHunderths);                                    
+                                }else{
+                                    text.setText("0"+stopMinutes+":"+"0"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                }
                             }
                         }else{
                             //adding 2 seconds
                             stopSeconds += 2;
                             if(stopSeconds >= 10){
-                                text.setText(stopSeconds+"."+stopHunderths);
-
+                                if(stopHunderths >= 10){
+                                    text.setText(stopSeconds+"."+stopHunderths);                                    
+                                }else{
+                                    text.setText(stopSeconds+"."+"0"+stopHunderths);                                    
+                                }
                             }else{
-                            text.setText("0"+stopSeconds+"."+stopHunderths);
+                                if(stopHunderths >= 10){
+                                    text.setText("0"+stopSeconds+"."+stopHunderths);                                    
+                                }else{
+                                    text.setText("0"+stopSeconds+"."+"0"+stopHunderths);                                    
+                                }
                             }
                         }
                         plus2Button.setDisable(true);
