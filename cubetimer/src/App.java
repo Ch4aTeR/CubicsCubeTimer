@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.input.KeyEvent;
 
 
 public class App extends Application {
@@ -62,6 +63,9 @@ public class App extends Application {
         //JSONObject json = JSONObject(IOUtils.to)
     }
 
+    //decode button
+    Button toggleButton = new Button("Start");
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         text = new Text("0.00");
@@ -89,8 +93,7 @@ public class App extends Application {
         //dnfbtn
         Button dnfButton = new Button("DNF");
 
-        //decode button
-        Button toggleButton = new Button("Start");
+        
 
         //loading scramble and setting text
         scrambleJson initialScramble = new scrambleJson();
@@ -286,9 +289,17 @@ public class App extends Application {
         root.setMargin(scrambleText, new Insets(15,10,5,10));
         root.getChildren().addAll(scrambleText, text, hroot);
 
+        setGlobalEventHandler(root);
         Scene scene = new Scene(root, 400, 300);
         primaryStage.setScene(scene);
         primaryStage.setTitle("LucasTimer");
         primaryStage.show();
+    }
+
+    private void setGlobalEventHandler(VBox root) {
+        root.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+               toggleButton.fire();
+               ev.consume(); 
+        });
     }
 }
