@@ -24,4 +24,12 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+    public void showScores() {
+        Scores scores = new Scores();
+        try {
+            scores.startScores(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

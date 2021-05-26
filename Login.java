@@ -26,13 +26,10 @@ public class Login {
         
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LucasTimer", "root", "Zli12345");
-            // here sonoo is database name, root is username and password
             String sql = " INSERT INTO users (username)" + " values (?)";
             PreparedStatement preparedStmt = con.prepareStatement(sql);
             preparedStmt.setString(1, username);
-          
-                // execute the preparedstatement
-                preparedStmt.execute();
+            preparedStmt.execute();
             con.close();
         } catch (Exception e){
             System.out.println(e);
@@ -61,33 +58,5 @@ public class Login {
             app.showTimer();
             dbConnection();
         });
-    }
-
-    public void buildMainScene () {
-        Button logout = new Button("Ausloggen");
-        BorderPane borderPane = new BorderPane();
-
-        VBox pane = new VBox();
-        pane.setSpacing(10);
-        borderPane.setCenter(pane);
-        pane.setAlignment(Pos.TOP_LEFT);
-
-        HBox pane1 = new HBox();
-        borderPane.setTop(pane1);
-        pane1.setAlignment(Pos.TOP_LEFT);
-
-        HBox outlog = new HBox();
-        outlog.getChildren().add(logout);
-        borderPane.setBottom(outlog);
-        outlog.setAlignment(Pos.BOTTOM_RIGHT);
-
-
-        Scene loginscene = new Scene(borderPane, 400, 300);
-        this.primaryStage.setScene(loginscene);
-
-        logout.setOnAction(out -> {
-            buildLoginScene();
-        });
-
     }
 }

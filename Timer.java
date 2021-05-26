@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.sql.*;
 
-public class Timer {
+public class Timer{
     public Stage primaryStage;
     //integers for the time
     int mins = 0;
@@ -84,6 +84,8 @@ public class Timer {
 
     public void start(App app) throws Exception {
         this.primaryStage = app.primaryStage;
+
+        Button scoresButton = new Button("Scores");
 
         text = new Text("0.00");
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
@@ -274,10 +276,15 @@ public class Timer {
             }
         });
 
+        scoresButton.setOnAction(event2 ->{
+            app.showScores();
+
+        });
+
         //adding children to hroot
         hroot.getChildren().addAll(toggleButton, plus2Button, dnfButton);
         //adding children to root
-        root.getChildren().addAll(text, hroot);
+        root.getChildren().addAll(text, hroot, scoresButton);
 
         Scene scene = new Scene(root, 400, 300);
         primaryStage.setScene(scene);
